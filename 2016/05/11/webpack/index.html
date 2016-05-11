@@ -20,7 +20,7 @@ webpack是继gulp之后的又一前端构建工具，一开始对webpack的配�
 。。。。。
 till最近才明白webpack的构建思想： 一切以模块对待，以entry的js文件为入口，这些js里可以有commjs语法，e">
 <meta property="og:image" content="http://webpack.github.io/assets/what-is-webpack.png">
-<meta property="og:updated_time" content="2016-05-11T06:41:41.000Z">
+<meta property="og:updated_time" content="2016-05-11T06:44:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack">
 <meta name="twitter:description" content="*webpack
@@ -112,7 +112,9 @@ var autoprefixer = require(&apos;autoprefixer&apos;)
 var ExtractTextPlugin = require(&apos;extract-text-webpack-plugin&apos;)
 var _ = require(&apos;lodash&apos;)
 var pagemap = require(&apos;./pagemap&apos;)
-var entryPath = &apos;./src/entries&apos;    var entries = []    var entryNames = []    
+var entryPath = &apos;./src/entries&apos;
+var entries = []    
+var entryNames = []    
 var pageEntry = {}
 var configEntry = {
     swiper: [&apos;swiper&apos;]    
@@ -132,88 +134,88 @@ module.exports = {
         publicPath: &apos;/assets/&apos;,
         filename: &apos;[name].js&apos;
       },
-  resolve: {
-    extensions: [&apos;&apos;, &apos;.js&apos;, &apos;.vue&apos;,&apos;.scss&apos;, &apos;.css&apos;],
-    alias: {
-          &apos;src&apos;: path.resolve(__dirname, &apos;./src&apos;),
-        &apos;components&apos;: path.resolve(__dirname, &apos;./src/components&apos;),
-        &apos;sass&apos;: path.resolve(__dirname, &apos;./src/assets/sass&apos;),
-        &apos;vue&apos;: &apos;vue/dist/vue.min.js&apos;,
-        &apos;vue-resource&apos;: &apos;vue-resource/dist/vue-resource.min.js&apos;
-    }
-  },
-  resolveLoader: {
-    root: path.join(__dirname, &apos;node_modules&apos;)
-  },
-  module: {
-    loaders: [
-        {
-            test: /\.css$/,
-            loader: ExtractTextPlugin.extract(&apos;vue-style&apos;, &apos;css!postcss&apos;)
-        },
-        {
-            test: /\.scss$/,
-            loader: ExtractTextPlugin.extract(&apos;vue-style&apos;, &apos;css!postcss!sass&apos;)
-        },
-          {
-            test: /\.vue$/,
-            loader: &apos;vue&apos;
-          },
-          {
-            test: /\.js$/,
-            loader: &apos;babel&apos;,
-            exclude: /node_modules/
-          },
-        // for vubox&apos;s components
-        // {
-        //     test: /vubox.src.*?js$/,
-        //     loader: &apos;babel&apos;
-        // },
-          {
-            test: /\.json$/,
-            loader: &apos;json&apos;
-          },
-          {
-            test: /\.(png|jpg|gif)$/,
-            loader: &apos;url&apos;,
-            query: {
-                  name: &apos;img/[name].[hash:7].[ext]&apos;
-            }
-          },
-        {
-            test: /\.(woff|ttf|eot|svg)/,
-            loader: &apos;file&apos;,
-            query: {
-                name: &apos;fonts/[name].[ext]?[hash:7]&apos;
-            }
+    resolve: {
+        extensions: [&apos;&apos;, &apos;.js&apos;, &apos;.vue&apos;,&apos;.scss&apos;, &apos;.css&apos;],
+        alias: {
+            &apos;src&apos;: path.resolve(__dirname, &apos;./src&apos;),
+            &apos;components&apos;: path.resolve(__dirname, &apos;./src/components&apos;),
+            &apos;sass&apos;: path.resolve(__dirname, &apos;./src/assets/sass&apos;),
+            &apos;vue&apos;: &apos;vue/dist/vue.min.js&apos;,
+            &apos;vue-resource&apos;: &apos;vue-resource/dist/vue-resource.min.js&apos;
         }
-    ]
-  },
-vue: {
-    loaders: {
-        css: ExtractTextPlugin.extract(&apos;css!postcss&apos;),
-        sass: ExtractTextPlugin.extract(&apos;css!postcss!sass&apos;)
-    }
-},
-postcss: [
-    autoprefixer({
-        browsers: [&apos;last 2 versions&apos;]
-    })
-],
-plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-        name: &apos;lib&apos;,
-        chunks: entryNames
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-        name: &apos;common&apos;,
-        chunks: [&apos;service&apos;, &apos;lib&apos;, &apos;swiper&apos;]
-    }),
-    new webpack.ProvidePlugin({
-        g: path.join(__dirname, &apos;./src/js/global.js&apos;),
-        adapter: path.join(__dirname, &apos;./src/js/adapter.js&apos;)
-    })
-]
+    },
+    resolveLoader: {
+        root: path.join(__dirname, &apos;node_modules&apos;)
+    },
+    module: {
+        loaders: [
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract(&apos;vue-style&apos;, &apos;css!postcss&apos;)
+            },
+            {
+                test: /\.scss$/,
+                loader: ExtractTextPlugin.extract(&apos;vue-style&apos;, &apos;css!postcss!sass&apos;)
+            },
+            {
+                test: /\.vue$/,
+                loader: &apos;vue&apos;
+            },
+            {
+                test: /\.js$/,
+                loader: &apos;babel&apos;,
+                exclude: /node_modules/
+            },
+            // for vubox&apos;s components
+            // {
+            //  test: /vubox.src.*?js$/,
+            //  loader: &apos;babel&apos;
+            // },
+            {
+                test: /\.json$/,
+                loader: &apos;json&apos;
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                loader: &apos;url&apos;,
+                query: {
+                    name: &apos;img/[name].[hash:7].[ext]&apos;
+                }
+            },
+            {
+                test: /\.(woff|ttf|eot|svg)/,
+                loader: &apos;file&apos;,
+                query: {
+                    name: &apos;fonts/[name].[ext]?[hash:7]&apos;
+                }
+            }
+        ]
+    },
+    vue: {
+        loaders: {
+            css: ExtractTextPlugin.extract(&apos;css!postcss&apos;),
+            sass: ExtractTextPlugin.extract(&apos;css!postcss!sass&apos;)
+        }
+    },
+    postcss: [
+        autoprefixer({
+            browsers: [&apos;last 2 versions&apos;]
+        })
+    ],
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            name: &apos;lib&apos;,
+            chunks: entryNames
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: &apos;common&apos;,
+            chunks: [&apos;service&apos;, &apos;lib&apos;, &apos;swiper&apos;]
+        }),
+        new webpack.ProvidePlugin({
+            g: path.join(__dirname, &apos;./src/js/global.js&apos;),
+            adapter: path.join(__dirname, &apos;./src/js/adapter.js&apos;)
+        })
+   ]
 </code></pre><p>}</p>
 <p>webpack.dev.config.js</p>
 <pre><code>// denpendencies
@@ -255,7 +257,7 @@ module.exports = config;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/11/webpack/" data-id="cio2i0v800003zv69murjccr1" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/05/11/webpack/" data-id="cio2i4me800000d693o2ocwgo" class="article-share-link">Delen</a>
       
       
     </footer>
