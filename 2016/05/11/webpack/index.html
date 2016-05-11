@@ -20,7 +20,7 @@ webpack是继gulp之后的又一前端构建工具，一开始对webpack的配�
 。。。。。
 till最近才明白webpack的构建思想： 一切以模块对待，以entry的js文件为入口，这些js里可以有commjs语法，e">
 <meta property="og:image" content="http://webpack.github.io/assets/what-is-webpack.png">
-<meta property="og:updated_time" content="2016-05-11T06:35:25.000Z">
+<meta property="og:updated_time" content="2016-05-11T06:41:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack">
 <meta name="twitter:description" content="*webpack
@@ -68,7 +68,7 @@ till最近才明白webpack的构建思想： 一切以模块对待，以entry的
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -109,21 +109,29 @@ till最近才明白webpack的构建思想： 一切以模块对待，以entry的
 <pre><code>var path = require(&apos;path&apos;)    
 var webpack = require(&apos;webpack&apos;)
 var autoprefixer = require(&apos;autoprefixer&apos;)
-var ExtractTextPlugin = require(&apos;extract-text-    webpack-plugin&apos;)
+var ExtractTextPlugin = require(&apos;extract-text-webpack-plugin&apos;)
 var _ = require(&apos;lodash&apos;)
 var pagemap = require(&apos;./pagemap&apos;)
-var entryPath = &apos;./src/entries&apos;    var entries = []    var entryNames = []    var pageEntry = {}    var configEntry = {
-swiper: [&apos;swiper&apos;]    }    _.keys(pagemap).forEach(function(key){
-entries.push(pagemap[key].entry)    })    _.uniq(entries).forEach(function(item){
-var name = item.match(/(.*)\.js/)[1]
-entryNames.push(name)
-pageEntry[name] = path.join(entryPath, item)    })    _.assign(configEntry, pageEntry)    module.exports = {
-entry: configEntry,
-output: {
-    path: path.resolve(__dirname, &apos;dist/assets&apos;),
-    publicPath: &apos;/assets/&apos;,
-    filename: &apos;[name].js&apos;
-  },
+var entryPath = &apos;./src/entries&apos;    var entries = []    var entryNames = []    
+var pageEntry = {}
+var configEntry = {
+    swiper: [&apos;swiper&apos;]    
+}    
+_.keys(pagemap).forEach(function(key){
+    entries.push(pagemap[key].entry)    
+})
+_.uniq(entries).forEach(function(item){
+    var name = item.match(/(.*)\.js/)[1]
+    entryNames.push(name)
+    pageEntry[name] = path.join(entryPath, item)    })    
+_.assign(configEntry, pageEntry)    
+module.exports = {
+    entry: configEntry,
+    output: {
+        path: path.resolve(__dirname, &apos;dist/assets&apos;),
+        publicPath: &apos;/assets/&apos;,
+        filename: &apos;[name].js&apos;
+      },
   resolve: {
     extensions: [&apos;&apos;, &apos;.js&apos;, &apos;.vue&apos;,&apos;.scss&apos;, &apos;.css&apos;],
     alias: {
@@ -241,13 +249,13 @@ module.exports = config;
 </code></pre><p>当执行webpack构建命令时，以entry为入口文件，遇到es6的import语法会由下面的loader配置中的bable-loader进行转译,(webpack内置对commonjs语法的支持，不需要额外的loader。)</p>
 <p>其实loader就是webpack在对js文件进行处理的时候调用的一些辅助工具。接着若遇到require(‘css’)文件也调用下面相应的loader进行处理，这里其他的loader像是json，以及图片都是异曲同工，都是为我们的js文件服务。</p>
 <p>这里的图片loader的查询参数query里的name属性可以指定生成图片的名称以及路径这就是对图片的类似gulp.dest()效果。而htmlWebpackPlugin插件则实现了对html文件的类似gulp.dest()的效果。</p>
-<p>总结wepack：</p>
-<p>webpack把一切当做模块，并且以js文件为入口，也就是在js文件里你可将各种资源当做模块引入，语法就是require，最后由webpack来帮助你进行最后处理。这里的处理就体现在了webpack配置文件上。</p>
+<p>对比webpack和gulp：</p>
+<p>webpack把一切当做模块，并且以js文件为入口，也就是在js文件里你可将各种资源当做模块引入，语法就是require，最后由webpack来帮助你进行最后处理.这里处理体现在webpack配置文件中。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/11/webpack/" data-id="cio2hsrio0000za69vnf4o3t5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/11/webpack/" data-id="cio2i0v800003zv69murjccr1" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -258,7 +266,7 @@ module.exports = config;
   
   
     <a href="/2016/05/07/My-first-post/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Ouder</strong>
       <div class="article-nav-title">My first post</div>
     </a>
   
@@ -276,7 +284,7 @@ module.exports = config;
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">Labels</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li></ul>
     </div>
@@ -295,7 +303,7 @@ module.exports = config;
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archieven</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
     </div>
@@ -305,7 +313,7 @@ module.exports = config;
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Recente berichten</h3>
     <div class="widget">
       <ul>
         
