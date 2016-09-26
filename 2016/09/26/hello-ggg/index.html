@@ -84,30 +84,16 @@
 
 
 
-<meta name="description" content="*webpack
-
-webpack是继gulp之后的又一前端构建工具，一开始对webpack的配置很是困惑，entry里是针对js的配置，当时有疑问webpack可以做到gulp.dest的功能吗？(后来知道htmlWebpackPlugin可以做到)。。。
-。。。。。
-till最近才明白webpack的构建思想： 一切以模块对待，以entry的js文件为入口，这些js里可以有commjs语法，e">
+<meta name="description" content="####ddddddddddd">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpack">
-<meta property="og:url" content="http://yoursite.com/2016/05/11/webpack/index.html">
+<meta property="og:title" content="hello ggg">
+<meta property="og:url" content="http://yoursite.com/2016/09/26/hello-ggg/index.html">
 <meta property="og:site_name" content="chenyajun blog">
-<meta property="og:description" content="*webpack
-
-webpack是继gulp之后的又一前端构建工具，一开始对webpack的配置很是困惑，entry里是针对js的配置，当时有疑问webpack可以做到gulp.dest的功能吗？(后来知道htmlWebpackPlugin可以做到)。。。
-。。。。。
-till最近才明白webpack的构建思想： 一切以模块对待，以entry的js文件为入口，这些js里可以有commjs语法，e">
-<meta property="og:image" content="http://webpack.github.io/assets/what-is-webpack.png">
-<meta property="og:updated_time" content="2016-05-11T06:44:46.000Z">
+<meta property="og:description" content="####ddddddddddd">
+<meta property="og:updated_time" content="2016-09-26T07:45:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="webpack">
-<meta name="twitter:description" content="*webpack
-
-webpack是继gulp之后的又一前端构建工具，一开始对webpack的配置很是困惑，entry里是针对js的配置，当时有疑问webpack可以做到gulp.dest的功能吗？(后来知道htmlWebpackPlugin可以做到)。。。
-。。。。。
-till最近才明白webpack的构建思想： 一切以模块对待，以entry的js文件为入口，这些js里可以有commjs语法，e">
-<meta name="twitter:image" content="http://webpack.github.io/assets/what-is-webpack.png">
+<meta name="twitter:title" content="hello ggg">
+<meta name="twitter:description" content="####ddddddddddd">
 
 
 
@@ -125,7 +111,7 @@ till最近才明白webpack的构建思想： 一切以模块对待，以entry的
   };
 </script>
 
-  <title> webpack | chenyajun blog </title>
+  <title> hello ggg | chenyajun blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -245,7 +231,7 @@ till最近才明白webpack的构建思想： 一切以模块对待，以entry的
             
             
               
-                webpack
+                hello ggg
               
             
           </h1>
@@ -257,8 +243,8 @@ till最近才明白webpack的构建思想： 一切以模块对待，以entry的
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-11T14:04:14+08:00" content="2016-05-11">
-              2016-05-11
+            <time itemprop="dateCreated" datetime="2016-09-26T15:45:33+08:00" content="2016-09-26">
+              2016-09-26
             </time>
           </span>
 
@@ -285,160 +271,7 @@ till最近才明白webpack的构建思想： 一切以模块对待，以entry的
       
 
       
-        <p>*webpack</p>
-<p><img src="http://webpack.github.io/assets/what-is-webpack.png" alt="webpack"></p>
-<p>webpack是继gulp之后的又一前端构建工具，一开始对webpack的配置很是困惑，entry里是针对js的配置，当时有疑问webpack可以做到gulp.dest的功能吗？(后来知道htmlWebpackPlugin可以做到)。。。</p>
-<p>。。。。。</p>
-<p>till最近才明白webpack的构建思想： 一切以模块对待，以entry的js文件为入口，这些js里可以有commjs语法，es6语法，可以require(‘css’),也可以依据这些js生成html。</p>
-<p>配置文件：</p>
-<p>webpack.basic.config.js</p>
-<pre><code>var path = require(&apos;path&apos;)    
-var webpack = require(&apos;webpack&apos;)
-var autoprefixer = require(&apos;autoprefixer&apos;)
-var ExtractTextPlugin = require(&apos;extract-text-webpack-plugin&apos;)
-var _ = require(&apos;lodash&apos;)
-var pagemap = require(&apos;./pagemap&apos;)
-var entryPath = &apos;./src/entries&apos;
-var entries = []    
-var entryNames = []    
-var pageEntry = {}
-var configEntry = {
-    swiper: [&apos;swiper&apos;]    
-}    
-_.keys(pagemap).forEach(function(key){
-    entries.push(pagemap[key].entry)    
-})
-_.uniq(entries).forEach(function(item){
-    var name = item.match(/(.*)\.js/)[1]
-    entryNames.push(name)
-    pageEntry[name] = path.join(entryPath, item)    })    
-_.assign(configEntry, pageEntry)    
-module.exports = {
-    entry: configEntry,
-    output: {
-        path: path.resolve(__dirname, &apos;dist/assets&apos;),
-        publicPath: &apos;/assets/&apos;,
-        filename: &apos;[name].js&apos;
-      },
-    resolve: {
-        extensions: [&apos;&apos;, &apos;.js&apos;, &apos;.vue&apos;,&apos;.scss&apos;, &apos;.css&apos;],
-        alias: {
-            &apos;src&apos;: path.resolve(__dirname, &apos;./src&apos;),
-            &apos;components&apos;: path.resolve(__dirname, &apos;./src/components&apos;),
-            &apos;sass&apos;: path.resolve(__dirname, &apos;./src/assets/sass&apos;),
-            &apos;vue&apos;: &apos;vue/dist/vue.min.js&apos;,
-            &apos;vue-resource&apos;: &apos;vue-resource/dist/vue-resource.min.js&apos;
-        }
-    },
-    resolveLoader: {
-        root: path.join(__dirname, &apos;node_modules&apos;)
-    },
-    module: {
-        loaders: [
-            {
-                test: /\.css$/,
-                loader: ExtractTextPlugin.extract(&apos;vue-style&apos;, &apos;css!postcss&apos;)
-            },
-            {
-                test: /\.scss$/,
-                loader: ExtractTextPlugin.extract(&apos;vue-style&apos;, &apos;css!postcss!sass&apos;)
-            },
-            {
-                test: /\.vue$/,
-                loader: &apos;vue&apos;
-            },
-            {
-                test: /\.js$/,
-                loader: &apos;babel&apos;,
-                exclude: /node_modules/
-            },
-            // for vubox&apos;s components
-            // {
-            //  test: /vubox.src.*?js$/,
-            //  loader: &apos;babel&apos;
-            // },
-            {
-                test: /\.json$/,
-                loader: &apos;json&apos;
-            },
-            {
-                test: /\.(png|jpg|gif)$/,
-                loader: &apos;url&apos;,
-                query: {
-                    name: &apos;img/[name].[hash:7].[ext]&apos;
-                }
-            },
-            {
-                test: /\.(woff|ttf|eot|svg)/,
-                loader: &apos;file&apos;,
-                query: {
-                    name: &apos;fonts/[name].[ext]?[hash:7]&apos;
-                }
-            }
-        ]
-    },
-    vue: {
-        loaders: {
-            css: ExtractTextPlugin.extract(&apos;css!postcss&apos;),
-            sass: ExtractTextPlugin.extract(&apos;css!postcss!sass&apos;)
-        }
-    },
-    postcss: [
-        autoprefixer({
-            browsers: [&apos;last 2 versions&apos;]
-        })
-    ],
-    plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            name: &apos;lib&apos;,
-            chunks: entryNames
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: &apos;common&apos;,
-            chunks: [&apos;service&apos;, &apos;lib&apos;, &apos;swiper&apos;]
-        }),
-        new webpack.ProvidePlugin({
-            g: path.join(__dirname, &apos;./src/js/global.js&apos;),
-            adapter: path.join(__dirname, &apos;./src/js/adapter.js&apos;)
-        })
-   ]
-</code></pre><p>}</p>
-<p>webpack.dev.config.js</p>
-<pre><code>// denpendencies
-var path = require(&apos;path&apos;)
-var webpack = require(&apos;webpack&apos;);
-var config = require(&apos;./webpack.base.config&apos;);
-var pageMap = require(&apos;./pagemap&apos;);
-var HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;);
-var ExtractTextPlugin = require(&apos;extract-text-webpack-plugin&apos;);
-
-// do not specify --devtool on the command line
-config.devtool = &apos;#source-map&apos;;
-
-config.output.publicPath = &apos;/&apos;;
-
-config.plugins = (config.plugins||[]).concat([
-    new webpack.NoErrorsPlugin(),
-    new ExtractTextPlugin(&apos;css/[name].css&apos;)
-]);
-
-// add HtmlWebpackPlugin to plugins
-Object.keys(pageMap).forEach(function(key){
-    var page = pageMap[key];
-    config.plugins.push(new HtmlWebpackPlugin({
-        title: page.title||&apos;德基广场&apos;,
-        filename: key,
-        template: page.template,
-        chunks: page.chunks
-    }));
-});
-
-module.exports = config;
-</code></pre><p>当执行webpack构建命令时，以entry为入口文件，遇到es6的import语法会由下面的loader配置中的bable-loader进行转译,(webpack内置对commonjs语法的支持，不需要额外的loader。)</p>
-<p>其实loader就是webpack在对js文件进行处理的时候调用的一些辅助工具。接着若遇到require(‘css’)文件也调用下面相应的loader进行处理，这里其他的loader像是json，以及图片都是异曲同工，都是为我们的js文件服务。</p>
-<p>这里的图片loader的查询参数query里的name属性可以指定生成图片的名称以及路径这就是对图片的类似gulp.dest()效果。而htmlWebpackPlugin插件则实现了对html文件的类似gulp.dest()的效果。</p>
-<p>对比webpack和gulp：</p>
-<p>webpack把一切当做模块，并且以js文件为入口，也就是在js文件里你可将各种资源当做模块引入，语法就是require，最后由webpack来帮助你进行最后处理.这里处理体现在webpack配置文件中。</p>
+        <p>####ddddddddddd</p>
 
       
     </div>
@@ -463,17 +296,13 @@ module.exports = config;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/07/My-first-post/" rel="next" title="My first post">
-                <i class="fa fa-chevron-left"></i> My first post
+              <a href="/2016/09/24/react-redux/" rel="next" title="react-redux">
+                <i class="fa fa-chevron-left"></i> react-redux
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/11/redux/" rel="prev" title="redux">
-                redux <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
