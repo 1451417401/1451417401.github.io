@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="js Concurrency model and Event Loop," />
 
 
 
@@ -84,37 +84,51 @@
 
 
 
-<meta name="description" content="title: notedate: 2016-05-24 14:16:08
-1.编辑gitconfig
-git config --global --edit
-shift+command+G(快速打开文件)
-2.host文件目录
-/etc/hosts
-3.nginx.conf文件目录(用nginx -h查看安装位置)
-/usr/local/etc/nginx/nginx.conf">
+<meta name="description" content="原文链接
+js的并发模型基于’事件循环’.js的并发模型不同于C,Java的request-response model。
+##运行时概念接下来的一段解释了一个理论模型,现代js引擎的实现要复杂的多。
+###示意图
+
+###Stack函数调用在栈中递归执行
+function foo(b) {
+  var a = 10;
+  return a + b + 11;
+}
+
+function bar(x)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="chenyajun blog">
-<meta property="og:url" content="http://yoursite.com/2016/05/24/note/index.html">
+<meta property="og:title" content="js并发模型和事件循环">
+<meta property="og:url" content="http://yoursite.com/2017/07/07/js并发模型和事件循环/index.html">
 <meta property="og:site_name" content="chenyajun blog">
-<meta property="og:description" content="title: notedate: 2016-05-24 14:16:08
-1.编辑gitconfig
-git config --global --edit
-shift+command+G(快速打开文件)
-2.host文件目录
-/etc/hosts
-3.nginx.conf文件目录(用nginx -h查看安装位置)
-/usr/local/etc/nginx/nginx.conf">
-<meta property="og:updated_time" content="2016-05-24T06:37:57.000Z">
+<meta property="og:description" content="原文链接
+js的并发模型基于’事件循环’.js的并发模型不同于C,Java的request-response model。
+##运行时概念接下来的一段解释了一个理论模型,现代js引擎的实现要复杂的多。
+###示意图
+
+###Stack函数调用在栈中递归执行
+function foo(b) {
+  var a = 10;
+  return a + b + 11;
+}
+
+function bar(x)">
+<meta property="og:image" content="https://developer.mozilla.org/files/4617/default.svg">
+<meta property="og:updated_time" content="2017-07-07T08:54:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="chenyajun blog">
-<meta name="twitter:description" content="title: notedate: 2016-05-24 14:16:08
-1.编辑gitconfig
-git config --global --edit
-shift+command+G(快速打开文件)
-2.host文件目录
-/etc/hosts
-3.nginx.conf文件目录(用nginx -h查看安装位置)
-/usr/local/etc/nginx/nginx.conf">
+<meta name="twitter:title" content="js并发模型和事件循环">
+<meta name="twitter:description" content="原文链接
+js的并发模型基于’事件循环’.js的并发模型不同于C,Java的request-response model。
+##运行时概念接下来的一段解释了一个理论模型,现代js引擎的实现要复杂的多。
+###示意图
+
+###Stack函数调用在栈中递归执行
+function foo(b) {
+  var a = 10;
+  return a + b + 11;
+}
+
+function bar(x)">
+<meta name="twitter:image" content="https://developer.mozilla.org/files/4617/default.svg">
 
 
 
@@ -132,7 +146,7 @@ shift+command+G(快速打开文件)
   };
 </script>
 
-  <title>  | chenyajun blog </title>
+  <title> js并发模型和事件循环 | chenyajun blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -252,7 +266,7 @@ shift+command+G(快速打开文件)
             
             
               
-                
+                js并发模型和事件循环
               
             
           </h1>
@@ -264,8 +278,8 @@ shift+command+G(快速打开文件)
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-24T14:16:08+08:00" content="2016-05-24">
-              2016-05-24
+            <time itemprop="dateCreated" datetime="2017-07-07T15:34:04+08:00" content="2017-07-07">
+              2017-07-07
             </time>
           </span>
 
@@ -292,16 +306,69 @@ shift+command+G(快速打开文件)
       
 
       
-        <hr>
-<p>title: note<br>date: 2016-05-24 14:16:08</p>
-<p><strong><strong>1.编辑gitconfig</strong></strong></p>
-<pre><code>git config --global --edit
-</code></pre><p>shift+command+G(快速打开文件)</p>
-<p><strong><strong>2.host文件目录</strong></strong></p>
-<pre><code>/etc/hosts
-</code></pre><p><strong><strong>3.nginx.conf文件目录</strong></strong>(用nginx -h查看安装位置)</p>
-<pre><code>/usr/local/etc/nginx/nginx.conf
-</code></pre>
+        <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop" target="_blank" rel="external">原文链接</a></p>
+<p>js的并发模型基于’事件循环’.js的并发模型不同于C,Java的request-response model。</p>
+<p>##运行时概念<br>接下来的一段解释了一个理论模型,现代js引擎的实现要复杂的多。</p>
+<p>###示意图</p>
+<p><img src="https://developer.mozilla.org/files/4617/default.svg" alt=""></p>
+<p>###Stack<br>函数调用在栈中递归执行</p>
+<pre><code>function foo(b) {
+  var a = 10;
+  return a + b + 11;
+}
+
+function bar(x) {
+  var y = 3;
+  return foo(x * y);
+}
+
+console.log(bar(7));
+</code></pre><p>当bar被调用时，bar入栈以及包括bar的参数和本地变量.当bar调用foo的时候,foo被推入栈顶包括foo的参数和本地变量.当foo返回时,栈顶元素出栈只留下bar.当bar执行完出栈,栈变为空.</p>
+<p>###堆<br>对象在堆中分配,只是一个名称,表示一个大的,非结构化的内存区域.</p>
+<p>###队列<br>javascript运行时包含了一个消息队列,存放待处理的消息.当栈有足够的容量时,消息出队,入队进行处理.一个消息的处理包括了其内部关联函数的递归调用执行, 当消息完成时即函数调用结束,栈为空,处理下一个消息.</p>
+<p>##事件循环</p>
+<p>事件循环因它的实现方式而得名,可以简单表示为</p>
+<pre><code>while (queue.waitForMessage()) {
+  queue.processNextMessage();
+}
+</code></pre><p>queue.waitForMessage同步等待消息的到达.</p>
+<p>###完全执行完成<br>每一个消息的处理都是等上一个消息执行完成.</p>
+<p>好处就是不会出现像是C中的竞争执行.</p>
+<p>坏处就就是如果一个消息执行占用太长的时间会造成阻塞从而无法响应用户的操作像是click和scroll事件.浏览器针对这种情况会给出脚本执行时间太长的提示框.一个好的解决方案就是将其分解为多个消息进行处理.</p>
+<p>###添加消息</p>
+<p>在web浏览器中,当有事件发生并且有相应的监听处理函数时,消息就会被添加进队列.如果没有监听函数,事件会丢失就不会有相对应的消息入队.所以说当点击事件发生并绑定了监听函数时,一个消息就会被添加进队列,其他事件也是一样.</p>
+<p>###0秒延时</p>
+<p>0秒延时并不是说回调函数会在0秒后立即执行.当调用setTimeout并且延时为0时,并不意味着回调函数会在0秒后执行.回调函数的执行需要等待队列中处在它之前的消息执行完成.在下面的例子中’this is just a message’会比setTomeout回调中的信息先打印在控制台.因为setTimeout设置的延时时间是最小的等待时间而不是确定的时间.</p>
+<pre><code>(function() {
+
+  console.log(&apos;this is the start&apos;);
+
+  setTimeout(function cb() {
+    console.log(&apos;this is a msg from call back&apos;);
+  });
+
+  console.log(&apos;this is just a message&apos;);
+
+  setTimeout(function cb1() {
+    console.log(&apos;this is a msg from call back1&apos;);
+  }, 0);
+
+  console.log(&apos;this is the end&apos;);
+
+})();
+
+// &quot;this is the start&quot;
+// &quot;this is just a message&quot;
+// &quot;this is the end&quot;
+// &quot;this is a msg from call back&quot;
+// &quot;this is a msg from call back1&quot;
+</code></pre><p>###多个运行时通信</p>
+<p>web worker或跨域的iframe都有各自的栈,堆和消息队列.不同的运行时之间通信只能通过postMessage方法发送消息进行.</p>
+<p>##非阻塞<br>js事件循环模型不同于其他语言,它是非阻塞的.在js中处理I/O一般都是通过事件和回调.所以当程序在等待IndexedDB数据库查询或等待一个XHR调用返回时,依然可以处理用户的输入.</p>
+<p>##总结</p>
+<p>所谓事件循环其实就是不断循环处理消息队列的这样一个过程.</p>
+<p><a href="http://blog.carbonfive.com/2013/10/27/the-javascript-event-loop-explained/" target="_blank" rel="external">推荐阅读</a></p>
+
       
     </div>
 
@@ -320,22 +387,24 @@ shift+command+G(快速打开文件)
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/js-Concurrency-model-and-Event-Loop/" rel="tag">#js Concurrency model and Event Loop</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/11/redux/" rel="next" title="redux">
-                <i class="fa fa-chevron-left"></i> redux
+              <a href="/2016/10/31/my-interview/" rel="next" title="my interview">
+                <i class="fa fa-chevron-left"></i> my interview
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/24/react-redux/" rel="prev" title="react-redux">
-                react-redux <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
