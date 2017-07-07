@@ -86,48 +86,48 @@
 
 <meta name="description" content="原文链接
 js的并发模型基于’事件循环’.js的并发模型不同于C,Java的request-response model。
-##运行时概念接下来的一段解释了一个理论模型,现代js引擎的实现要复杂的多。
-###示意图
-
-###Stack函数调用在栈中递归执行
+运行时概念接下来的一段解释了一个理论模型,现代js引擎的实现要复杂的多。
+示意图
+Stack函数调用在栈中递归执行
 function foo(b) {
   var a = 10;
   return a + b + 11;
 }
 
-function bar(x)">
+function bar(x) {
+  var">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js并发模型和事件循环">
 <meta property="og:url" content="http://yoursite.com/2017/07/07/js并发模型和事件循环/index.html">
 <meta property="og:site_name" content="chenyajun blog">
 <meta property="og:description" content="原文链接
 js的并发模型基于’事件循环’.js的并发模型不同于C,Java的request-response model。
-##运行时概念接下来的一段解释了一个理论模型,现代js引擎的实现要复杂的多。
-###示意图
-
-###Stack函数调用在栈中递归执行
+运行时概念接下来的一段解释了一个理论模型,现代js引擎的实现要复杂的多。
+示意图
+Stack函数调用在栈中递归执行
 function foo(b) {
   var a = 10;
   return a + b + 11;
 }
 
-function bar(x)">
+function bar(x) {
+  var">
 <meta property="og:image" content="https://developer.mozilla.org/files/4617/default.svg">
-<meta property="og:updated_time" content="2017-07-07T08:54:28.000Z">
+<meta property="og:updated_time" content="2017-07-07T09:00:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js并发模型和事件循环">
 <meta name="twitter:description" content="原文链接
 js的并发模型基于’事件循环’.js的并发模型不同于C,Java的request-response model。
-##运行时概念接下来的一段解释了一个理论模型,现代js引擎的实现要复杂的多。
-###示意图
-
-###Stack函数调用在栈中递归执行
+运行时概念接下来的一段解释了一个理论模型,现代js引擎的实现要复杂的多。
+示意图
+Stack函数调用在栈中递归执行
 function foo(b) {
   var a = 10;
   return a + b + 11;
 }
 
-function bar(x)">
+function bar(x) {
+  var">
 <meta name="twitter:image" content="https://developer.mozilla.org/files/4617/default.svg">
 
 
@@ -308,10 +308,9 @@ function bar(x)">
       
         <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop" target="_blank" rel="external">原文链接</a></p>
 <p>js的并发模型基于’事件循环’.js的并发模型不同于C,Java的request-response model。</p>
-<p>##运行时概念<br>接下来的一段解释了一个理论模型,现代js引擎的实现要复杂的多。</p>
-<p>###示意图</p>
-<p><img src="https://developer.mozilla.org/files/4617/default.svg" alt=""></p>
-<p>###Stack<br>函数调用在栈中递归执行</p>
+<h2 id="运行时概念"><a href="#运行时概念" class="headerlink" title="运行时概念"></a>运行时概念</h2><p>接下来的一段解释了一个理论模型,现代js引擎的实现要复杂的多。</p>
+<h3 id="示意图"><a href="#示意图" class="headerlink" title="示意图"></a>示意图</h3><p><img src="https://developer.mozilla.org/files/4617/default.svg" alt=""></p>
+<h3 id="Stack"><a href="#Stack" class="headerlink" title="Stack"></a>Stack</h3><p>函数调用在栈中递归执行</p>
 <pre><code>function foo(b) {
   var a = 10;
   return a + b + 11;
@@ -324,21 +323,18 @@ function bar(x) {
 
 console.log(bar(7));
 </code></pre><p>当bar被调用时，bar入栈以及包括bar的参数和本地变量.当bar调用foo的时候,foo被推入栈顶包括foo的参数和本地变量.当foo返回时,栈顶元素出栈只留下bar.当bar执行完出栈,栈变为空.</p>
-<p>###堆<br>对象在堆中分配,只是一个名称,表示一个大的,非结构化的内存区域.</p>
-<p>###队列<br>javascript运行时包含了一个消息队列,存放待处理的消息.当栈有足够的容量时,消息出队,入队进行处理.一个消息的处理包括了其内部关联函数的递归调用执行, 当消息完成时即函数调用结束,栈为空,处理下一个消息.</p>
-<p>##事件循环</p>
-<p>事件循环因它的实现方式而得名,可以简单表示为</p>
+<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>对象在堆中分配,只是一个名称,表示一个大的,非结构化的内存区域.</p>
+<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>javascript运行时包含了一个消息队列,存放待处理的消息.当栈有足够的容量时,消息出队,入队进行处理.一个消息的处理包括了其内部关联函数的递归调用执行, 当消息完成时即函数调用结束,栈为空,处理下一个消息.</p>
+<h2 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h2><p>事件循环因它的实现方式而得名,可以简单表示为</p>
 <pre><code>while (queue.waitForMessage()) {
   queue.processNextMessage();
 }
 </code></pre><p>queue.waitForMessage同步等待消息的到达.</p>
-<p>###完全执行完成<br>每一个消息的处理都是等上一个消息执行完成.</p>
+<h3 id="完全执行完成"><a href="#完全执行完成" class="headerlink" title="完全执行完成"></a>完全执行完成</h3><p>每一个消息的处理都是等上一个消息执行完成.</p>
 <p>好处就是不会出现像是C中的竞争执行.</p>
 <p>坏处就就是如果一个消息执行占用太长的时间会造成阻塞从而无法响应用户的操作像是click和scroll事件.浏览器针对这种情况会给出脚本执行时间太长的提示框.一个好的解决方案就是将其分解为多个消息进行处理.</p>
-<p>###添加消息</p>
-<p>在web浏览器中,当有事件发生并且有相应的监听处理函数时,消息就会被添加进队列.如果没有监听函数,事件会丢失就不会有相对应的消息入队.所以说当点击事件发生并绑定了监听函数时,一个消息就会被添加进队列,其他事件也是一样.</p>
-<p>###0秒延时</p>
-<p>0秒延时并不是说回调函数会在0秒后立即执行.当调用setTimeout并且延时为0时,并不意味着回调函数会在0秒后执行.回调函数的执行需要等待队列中处在它之前的消息执行完成.在下面的例子中’this is just a message’会比setTomeout回调中的信息先打印在控制台.因为setTimeout设置的延时时间是最小的等待时间而不是确定的时间.</p>
+<h3 id="添加消息"><a href="#添加消息" class="headerlink" title="添加消息"></a>添加消息</h3><p>在web浏览器中,当有事件发生并且有相应的监听处理函数时,消息就会被添加进队列.如果没有监听函数,事件会丢失就不会有相对应的消息入队.所以说当点击事件发生并绑定了监听函数时,一个消息就会被添加进队列,其他事件也是一样.</p>
+<h3 id="0秒延时"><a href="#0秒延时" class="headerlink" title="0秒延时"></a>0秒延时</h3><p>0秒延时并不是说回调函数会在0秒后立即执行.当调用setTimeout并且延时为0时,并不意味着回调函数会在0秒后执行.回调函数的执行需要等待队列中处在它之前的消息执行完成.在下面的例子中’this is just a message’会比setTomeout回调中的信息先打印在控制台.因为setTimeout设置的延时时间是最小的等待时间而不是确定的时间.</p>
 <pre><code>(function() {
 
   console.log(&apos;this is the start&apos;);
@@ -362,11 +358,9 @@ console.log(bar(7));
 // &quot;this is the end&quot;
 // &quot;this is a msg from call back&quot;
 // &quot;this is a msg from call back1&quot;
-</code></pre><p>###多个运行时通信</p>
-<p>web worker或跨域的iframe都有各自的栈,堆和消息队列.不同的运行时之间通信只能通过postMessage方法发送消息进行.</p>
-<p>##非阻塞<br>js事件循环模型不同于其他语言,它是非阻塞的.在js中处理I/O一般都是通过事件和回调.所以当程序在等待IndexedDB数据库查询或等待一个XHR调用返回时,依然可以处理用户的输入.</p>
-<p>##总结</p>
-<p>所谓事件循环其实就是不断循环处理消息队列的这样一个过程.</p>
+</code></pre><h3 id="多个运行时通信"><a href="#多个运行时通信" class="headerlink" title="多个运行时通信"></a>多个运行时通信</h3><p>web worker或跨域的iframe都有各自的栈,堆和消息队列.不同的运行时之间通信只能通过postMessage方法发送消息进行.</p>
+<h2 id="非阻塞"><a href="#非阻塞" class="headerlink" title="非阻塞"></a>非阻塞</h2><p>js事件循环模型不同于其他语言,它是非阻塞的.在js中处理I/O一般都是通过事件和回调.所以当程序在等待IndexedDB数据库查询或等待一个XHR调用返回时,依然可以处理用户的输入.</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>所谓事件循环其实就是不断循环处理消息队列的这样一个过程.</p>
 <p><a href="http://blog.carbonfive.com/2013/10/27/the-javascript-event-loop-explained/" target="_blank" rel="external">推荐阅读</a></p>
 
       
@@ -522,7 +516,7 @@ console.log(bar(7));
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#运行时概念"><span class="nav-number">1.</span> <span class="nav-text">运行时概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#示意图"><span class="nav-number">1.1.</span> <span class="nav-text">示意图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stack"><span class="nav-number">1.2.</span> <span class="nav-text">Stack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆"><span class="nav-number">1.3.</span> <span class="nav-text">堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队列"><span class="nav-number">1.4.</span> <span class="nav-text">队列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件循环"><span class="nav-number">2.</span> <span class="nav-text">事件循环</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#完全执行完成"><span class="nav-number">2.1.</span> <span class="nav-text">完全执行完成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加消息"><span class="nav-number">2.2.</span> <span class="nav-text">添加消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0秒延时"><span class="nav-number">2.3.</span> <span class="nav-text">0秒延时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多个运行时通信"><span class="nav-number">2.4.</span> <span class="nav-text">多个运行时通信</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非阻塞"><span class="nav-number">3.</span> <span class="nav-text">非阻塞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
           </div>
         </section>
